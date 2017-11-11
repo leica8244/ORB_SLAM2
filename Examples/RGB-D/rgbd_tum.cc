@@ -77,6 +77,8 @@ int main(int argc, char **argv)
     for(int ni=0; ni<nImages; ni++)
     {
         // Read image and depthmap from file
+        cout << string(argv[3])+"/"+vstrImageFilenamesRGB[ni] << endl;
+        cout << string(argv[3])+"/"+vstrImageFilenamesD[ni] << endl;
         imRGB = cv::imread(string(argv[3])+"/"+vstrImageFilenamesRGB[ni],CV_LOAD_IMAGE_UNCHANGED);
         imD = cv::imread(string(argv[3])+"/"+vstrImageFilenamesD[ni],CV_LOAD_IMAGE_UNCHANGED);
         double tframe = vTimestamps[ni];
@@ -87,7 +89,9 @@ int main(int argc, char **argv)
                  << string(argv[3]) << "/" << vstrImageFilenamesRGB[ni] << endl;
             return 1;
         }
-
+        // cv::imshow("color",imRGB);
+        // cv::imshow("depth",imD);
+        // cv::waitKey();
 #ifdef COMPILEDWITHC11
         std::chrono::steady_clock::time_point t1 = std::chrono::steady_clock::now();
 #else
